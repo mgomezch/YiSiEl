@@ -1,0 +1,2144 @@
+
+
+-------- Grammar --------
+
+rule 1 Programa: Definiciones Procedimientos "main" MInstrucciones "end"
+rule 2 Programa: Definiciones "main" MInstrucciones "end"
+rule 3 Programa: Procedimientos "main" MInstrucciones "end"
+rule 4 Programa: "main" MInstrucciones "end"
+rule 5 Definiciones: Definiciones Definicion
+rule 6 Definiciones: Definicion
+rule 7 Definicion: "var" IDs ":" "value"
+rule 8 Definicion: "var" IDs ":" "array" "of" "num"
+rule 9 IDs: IDs "," "id"
+rule 10 IDs: "id"
+rule 11 Procedimientos: Procedimientos Procedimiento
+rule 12 Procedimientos: Procedimiento
+rule 13 Procedimiento: "proc" "id" "(" Parametros ")" "as" Definiciones PInstruccion
+rule 14 Procedimiento: "proc" "id" "(" Parametros ")" "as" PInstruccion
+rule 15 Procedimiento: "proc" "id" "(" ")" "as" Definiciones PInstruccion
+rule 16 Procedimiento: "proc" "id" "(" ")" "as" PInstruccion
+rule 17 Parametros: Parametros "," Parametro
+rule 18 Parametros: Parametro
+rule 19 Parametro: "in" "id"
+rule 20 Parametro: "out" "id"
+rule 21 MInstrucciones: MInstrucciones ";" MInstruccion
+rule 22 MInstrucciones: MInstruccion
+rule 23 MInstruccion: "skip"
+rule 24 MInstruccion: Asignaciones
+rule 25 MInstruccion: "if" MCasos "fi"
+rule 26 MInstruccion: "do" MCasos "od"
+rule 27 MInstruccion: "begin" MInstrucciones "end"
+rule 28 MInstruccion: "id" "(" Expresiones ")"
+rule 29 MInstruccion: "id" "(" ")"
+rule 30 MInstruccion: "show" Expresion
+rule 31 MInstruccion: "show" "string"
+rule 32 PInstrucciones: PInstrucciones ";" PInstruccion
+rule 33 PInstrucciones: PInstruccion
+rule 34 PInstruccion: "skip"
+rule 35 PInstruccion: Asignaciones
+rule 36 PInstruccion: "if" PCasos "fi"
+rule 37 PInstruccion: "do" PCasos "od"
+rule 38 PInstruccion: "begin" PInstrucciones "end"
+rule 39 PInstruccion: "id" "(" Expresiones ")"
+rule 40 PInstruccion: "id" "(" ")"
+rule 41 PInstruccion: "show" Expresion
+rule 42 PInstruccion: "show" "string"
+rule 43 PInstruccion: "return"
+rule 44 Expresiones: Expresiones "," Expresion
+rule 45 Expresiones: Expresion
+rule 46 Asignaciones: LValue "," Asignaciones "," Expresion
+rule 47 Asignaciones: LValue "<-" Expresion
+rule 48 LValue: "id"
+rule 49 LValue: "id" "[" Expresion "]"
+rule 50 MCasos: MCasos "|" MCaso
+rule 51 MCasos: MCaso
+rule 52 MCaso: Predicado "->" MInstruccion
+rule 53 PCasos: PCasos "|" PCaso
+rule 54 PCasos: PCaso
+rule 55 PCaso: Predicado "->" PInstruccion
+rule 56 Expresion: Expresion "+" Expresion
+rule 57 Expresion: Expresion "-" Expresion
+rule 58 Expresion: Expresion "%" Expresion
+rule 59 Expresion: Expresion "*" Expresion
+rule 60 Expresion: Expresion "/" Expresion
+rule 61 Expresion: "-" "num"
+rule 62 Expresion: "+" "num"
+rule 63 Expresion: "num"
+rule 64 Expresion: "$" "id"
+rule 65 Expresion: "id"
+rule 66 Expresion: "id" "[" Expresion "]"
+rule 67 Expresion: "(" Expresion ")"
+rule 68 Predicado: Expresion "<" Expresion
+rule 69 Predicado: Expresion "<=" Expresion
+rule 70 Predicado: Expresion ">" Expresion
+rule 71 Predicado: Expresion ">=" Expresion
+rule 72 Predicado: Expresion "=" Expresion
+rule 73 Predicado: Expresion "!=" Expresion
+rule 74 Predicado: Predicado "&&" Predicado
+rule 75 Predicado: Predicado "||" Predicado
+rule 76 Predicado: "~" Predicado
+rule 77 Predicado: "true"
+rule 78 Predicado: "false"
+rule 79 Predicado: "(" Predicado ")"
+
+------- Symbols -------
+
+**Nonterminals, with rules where they appear
+
+  $start (52)
+    on right: 
+    on left : 
+  Programa (53)
+    on right: 
+    on left : 1 2 3 4
+  Definiciones (54)
+    on right: 1 2 5 13 15
+    on left : 5 6
+  Procedimientos (55)
+    on right: 1 3 11
+    on left : 11 12
+  MInstrucciones (56)
+    on right: 1 2 3 4 21 27
+    on left : 21 22
+  Definicion (57)
+    on right: 5 6
+    on left : 7 8
+  IDs (58)
+    on right: 7 8 9
+    on left : 9 10
+  Procedimiento (59)
+    on right: 11 12
+    on left : 13 14 15 16
+  Parametros (60)
+    on right: 13 14 17
+    on left : 17 18
+  PInstruccion (61)
+    on right: 13 14 15 16 32 33 55
+    on left : 34 35 36 37 38 39 40 41 42 43
+  Parametro (62)
+    on right: 17 18
+    on left : 19 20
+  MInstruccion (63)
+    on right: 21 22 52
+    on left : 23 24 25 26 27 28 29 30 31
+  Asignaciones (64)
+    on right: 24 35 46
+    on left : 46 47
+  MCasos (65)
+    on right: 25 26 50
+    on left : 50 51
+  Expresiones (66)
+    on right: 28 39 44
+    on left : 44 45
+  Expresion (67)
+    on right: 30 41 44 45 46 47 49 56 57 58 59 60 66 67 68 69 70 71 72 73
+    on left : 56 57 58 59 60 61 62 63 64 65 66 67
+  PInstrucciones (68)
+    on right: 32 38
+    on left : 32 33
+  PCasos (69)
+    on right: 36 37 53
+    on left : 53 54
+  LValue (70)
+    on right: 46 47
+    on left : 48 49
+  MCaso (71)
+    on right: 50 51
+    on left : 52
+  Predicado (72)
+    on right: 52 55 74 75 76 79
+    on left : 68 69 70 71 72 73 74 75 76 77 78 79
+  PCaso (73)
+    on right: 53 54
+    on left : 55
+
+**Terminals, with rules where they appear
+
+  $end (0) 
+  error (1) 
+  "+" (2) 56 62
+  "-" (3) 57 61
+  "*" (4) 59
+  "/" (5) 60
+  "<=" (6) 69
+  ">=" (7) 71
+  "!=" (8) 73
+  "&&" (9) 74
+  "end" (10) 1 2 3 4 27 38
+  "main" (11) 1 2 3 4
+  "array" (12) 8
+  "num" (13) 8 61 62 63
+  "%" (14) 58
+  "," (15) 9 17 44 46
+  ";" (16) 21 32
+  ":" (17) 7 8
+  "||" (18) 75
+  "<-" (19) 47
+  "->" (20) 52 55
+  "as" (21) 13 14 15 16
+  "out" (22) 20
+  "proc" (23) 13 14 15 16
+  "begin" (24) 27 38
+  "return" (25) 43
+  "$" (26) 64
+  "~" (27) 76
+  "=" (28) 72
+  ">" (29) 70
+  "do" (30) 26 37
+  "fi" (31) 25 36
+  "id" (32) 9 10 13 14 15 16 19 20 28 29 39 40 48 49 64 65 66
+  "if" (33) 25 36
+  "var" (34) 7 8
+  "show" (35) 30 31 41 42
+  "false" (36) 78
+  "string" (37) 31 42
+  "<" (38) 68
+  "(" (39) 13 14 15 16 28 29 39 40 67 79
+  ")" (40) 13 14 15 16 28 29 39 40 67 79
+  "[" (41) 49 66
+  "]" (42) 49 66
+  "|" (43) 50 53
+  "in" (44) 19
+  "od" (45) 26 37
+  "of" (46) 8
+  "skip" (47) 23 34
+  "true" (48) 77
+  "value" (49) 7
+  UMINUS (50) 
+  UPLUS (51) 
+
+--------- State ---------
+
+state 0
+
+
+  "main"        shift, and go to state 1
+  "proc"        shift, and go to state 3
+  "var"         shift, and go to state 4
+
+  Procedimientos  go to state 2
+  Definicion    go to state 5
+  Procedimiento  go to state 6
+  Programa      go to state 7
+  Definiciones  go to state 8
+
+state 1
+
+   4) Programa : "main" _ MInstrucciones "end"
+
+  "begin"       shift, and go to state 12
+  "do"          shift, and go to state 15
+  "id"          shift, and go to state 18
+  "if"          shift, and go to state 9
+  "show"        shift, and go to state 11
+  "skip"        shift, and go to state 13
+
+  MInstrucciones  go to state 10
+  LValue        go to state 14
+  MInstruccion  go to state 16
+  Asignaciones  go to state 17
+
+state 2
+
+   3) Programa : Procedimientos _ "main" MInstrucciones "end"
+  11) Procedimientos : Procedimientos _ Procedimiento
+
+  "main"        shift, and go to state 19
+  "proc"        shift, and go to state 3
+
+  Procedimiento  go to state 20
+
+state 3
+
+  13) Procedimiento : "proc" _ "id" "(" Parametros ")" "as" Definiciones PInstruccion
+  14) Procedimiento : "proc" _ "id" "(" Parametros ")" "as" PInstruccion
+  15) Procedimiento : "proc" _ "id" "(" ")" "as" Definiciones PInstruccion
+  16) Procedimiento : "proc" _ "id" "(" ")" "as" PInstruccion
+
+  "id"          shift, and go to state 21
+
+
+state 4
+
+   7) Definicion : "var" _ IDs ":" "value"
+   8) Definicion : "var" _ IDs ":" "array" "of" "num"
+
+  "id"          shift, and go to state 23
+
+  IDs           go to state 22
+
+state 5
+
+   6) Definiciones : Definicion _
+
+  $default      reduce using rule 6 (Definiciones)
+
+
+state 6
+
+  12) Procedimientos : Procedimiento _
+
+  $default      reduce using rule 12 (Procedimientos)
+
+
+state 7
+
+
+  $end          shift, and go to state 24
+
+
+state 8
+
+   1) Programa : Definiciones _ Procedimientos "main" MInstrucciones "end"
+   2) Programa : Definiciones _ "main" MInstrucciones "end"
+   5) Definiciones : Definiciones _ Definicion
+
+  "main"        shift, and go to state 25
+  "proc"        shift, and go to state 3
+  "var"         shift, and go to state 4
+
+  Procedimientos  go to state 26
+  Definicion    go to state 27
+  Procedimiento  go to state 6
+
+state 9
+
+  25) MInstruccion : "if" _ MCasos "fi"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  MCaso         go to state 36
+  Predicado     go to state 38
+  MCasos        go to state 40
+
+state 10
+
+   4) Programa : "main" MInstrucciones _ "end"
+  21) MInstrucciones : MInstrucciones _ ";" MInstruccion
+
+  "end"         shift, and go to state 42
+  ";"           shift, and go to state 41
+
+
+state 11
+
+  30) MInstruccion : "show" _ Expresion
+  31) MInstruccion : "show" _ "string"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "string"      shift, and go to state 44
+  "("           shift, and go to state 45
+
+  Expresion     go to state 43
+
+state 12
+
+  27) MInstruccion : "begin" _ MInstrucciones "end"
+
+  "begin"       shift, and go to state 12
+  "do"          shift, and go to state 15
+  "id"          shift, and go to state 18
+  "if"          shift, and go to state 9
+  "show"        shift, and go to state 11
+  "skip"        shift, and go to state 13
+
+  MInstrucciones  go to state 46
+  LValue        go to state 14
+  MInstruccion  go to state 16
+  Asignaciones  go to state 17
+
+state 13
+
+  23) MInstruccion : "skip" _
+
+  $default      reduce using rule 23 (MInstruccion)
+
+
+state 14
+
+  46) Asignaciones : LValue _ "," Asignaciones "," Expresion
+  47) Asignaciones : LValue _ "<-" Expresion
+
+  ","           shift, and go to state 47
+  "<-"          shift, and go to state 48
+
+
+state 15
+
+  26) MInstruccion : "do" _ MCasos "od"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  MCaso         go to state 36
+  Predicado     go to state 38
+  MCasos        go to state 49
+
+state 16
+
+  22) MInstrucciones : MInstruccion _
+
+  $default      reduce using rule 22 (MInstrucciones)
+
+
+state 17
+
+  24) MInstruccion : Asignaciones _
+
+  $default      reduce using rule 24 (MInstruccion)
+
+
+state 18
+
+  28) MInstruccion : "id" _ "(" Expresiones ")"
+  29) MInstruccion : "id" _ "(" ")"
+  48) LValue : "id" _
+  49) LValue : "id" _ "[" Expresion "]"
+
+  "("           shift, and go to state 50
+  "["           shift, and go to state 51
+  $default      reduce using rule 48 (LValue)
+
+
+state 19
+
+   3) Programa : Procedimientos "main" _ MInstrucciones "end"
+
+  "begin"       shift, and go to state 12
+  "do"          shift, and go to state 15
+  "id"          shift, and go to state 18
+  "if"          shift, and go to state 9
+  "show"        shift, and go to state 11
+  "skip"        shift, and go to state 13
+
+  MInstrucciones  go to state 52
+  LValue        go to state 14
+  MInstruccion  go to state 16
+  Asignaciones  go to state 17
+
+state 20
+
+  11) Procedimientos : Procedimientos Procedimiento _
+
+  $default      reduce using rule 11 (Procedimientos)
+
+
+state 21
+
+  13) Procedimiento : "proc" "id" _ "(" Parametros ")" "as" Definiciones PInstruccion
+  14) Procedimiento : "proc" "id" _ "(" Parametros ")" "as" PInstruccion
+  15) Procedimiento : "proc" "id" _ "(" ")" "as" Definiciones PInstruccion
+  16) Procedimiento : "proc" "id" _ "(" ")" "as" PInstruccion
+
+  "("           shift, and go to state 53
+
+
+state 22
+
+   7) Definicion : "var" IDs _ ":" "value"
+   8) Definicion : "var" IDs _ ":" "array" "of" "num"
+   9) IDs : IDs _ "," "id"
+
+  ","           shift, and go to state 54
+  ":"           shift, and go to state 55
+
+
+state 23
+
+  10) IDs : "id" _
+
+  $default      reduce using rule 10 (IDs)
+
+
+state 24
+
+
+  $end          shift, and go to state 56
+
+
+state 25
+
+   2) Programa : Definiciones "main" _ MInstrucciones "end"
+
+  "begin"       shift, and go to state 12
+  "do"          shift, and go to state 15
+  "id"          shift, and go to state 18
+  "if"          shift, and go to state 9
+  "show"        shift, and go to state 11
+  "skip"        shift, and go to state 13
+
+  MInstrucciones  go to state 57
+  LValue        go to state 14
+  MInstruccion  go to state 16
+  Asignaciones  go to state 17
+
+state 26
+
+   1) Programa : Definiciones Procedimientos _ "main" MInstrucciones "end"
+  11) Procedimientos : Procedimientos _ Procedimiento
+
+  "main"        shift, and go to state 58
+  "proc"        shift, and go to state 3
+
+  Procedimiento  go to state 20
+
+state 27
+
+   5) Definiciones : Definiciones Definicion _
+
+  $default      reduce using rule 5 (Definiciones)
+
+
+state 28
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  68) Predicado : Expresion _ "<" Expresion
+  69) Predicado : Expresion _ "<=" Expresion
+  70) Predicado : Expresion _ ">" Expresion
+  71) Predicado : Expresion _ ">=" Expresion
+  72) Predicado : Expresion _ "=" Expresion
+  73) Predicado : Expresion _ "!=" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "<="          shift, and go to state 66
+  ">="          shift, and go to state 67
+  "!="          shift, and go to state 69
+  "%"           shift, and go to state 60
+  "="           shift, and go to state 65
+  ">"           shift, and go to state 68
+  "<"           shift, and go to state 63
+
+
+state 29
+
+  63) Expresion : "num" _
+
+  $default      reduce using rule 63 (Expresion)
+
+
+state 30
+
+  62) Expresion : "+" _ "num"
+
+  "num"         shift, and go to state 70
+
+
+state 31
+
+  78) Predicado : "false" _
+
+  $default      reduce using rule 78 (Predicado)
+
+
+state 32
+
+  61) Expresion : "-" _ "num"
+
+  "num"         shift, and go to state 71
+
+
+state 33
+
+  77) Predicado : "true" _
+
+  $default      reduce using rule 77 (Predicado)
+
+
+state 34
+
+  64) Expresion : "$" _ "id"
+
+  "id"          shift, and go to state 72
+
+
+state 35
+
+  76) Predicado : "~" _ Predicado
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  Predicado     go to state 73
+
+state 36
+
+  51) MCasos : MCaso _
+
+  $default      reduce using rule 51 (MCasos)
+
+
+state 37
+
+  67) Expresion : "(" _ Expresion ")"
+  79) Predicado : "(" _ Predicado ")"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 74
+  Predicado     go to state 75
+
+state 38
+
+  52) MCaso : Predicado _ "->" MInstruccion
+  74) Predicado : Predicado _ "&&" Predicado
+  75) Predicado : Predicado _ "||" Predicado
+
+  "&&"          shift, and go to state 77
+  "||"          shift, and go to state 76
+  "->"          shift, and go to state 78
+
+
+state 39
+
+  65) Expresion : "id" _
+  66) Expresion : "id" _ "[" Expresion "]"
+
+  "["           shift, and go to state 79
+  $default      reduce using rule 65 (Expresion)
+
+
+state 40
+
+  25) MInstruccion : "if" MCasos _ "fi"
+  50) MCasos : MCasos _ "|" MCaso
+
+  "fi"          shift, and go to state 80
+  "|"           shift, and go to state 81
+
+
+state 41
+
+  21) MInstrucciones : MInstrucciones ";" _ MInstruccion
+
+  "begin"       shift, and go to state 12
+  "do"          shift, and go to state 15
+  "id"          shift, and go to state 18
+  "if"          shift, and go to state 9
+  "show"        shift, and go to state 11
+  "skip"        shift, and go to state 13
+
+  LValue        go to state 14
+  MInstruccion  go to state 82
+  Asignaciones  go to state 17
+
+state 42
+
+   4) Programa : "main" MInstrucciones "end" _
+
+  $default      reduce using rule 4 (Programa)
+
+
+state 43
+
+  30) MInstruccion : "show" Expresion _
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 30 (MInstruccion)
+
+
+state 44
+
+  31) MInstruccion : "show" "string" _
+
+  $default      reduce using rule 31 (MInstruccion)
+
+
+state 45
+
+  67) Expresion : "(" _ Expresion ")"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 83
+
+state 46
+
+  21) MInstrucciones : MInstrucciones _ ";" MInstruccion
+  27) MInstruccion : "begin" MInstrucciones _ "end"
+
+  "end"         shift, and go to state 84
+  ";"           shift, and go to state 41
+
+
+state 47
+
+  46) Asignaciones : LValue "," _ Asignaciones "," Expresion
+
+  "id"          shift, and go to state 86
+
+  LValue        go to state 14
+  Asignaciones  go to state 85
+
+state 48
+
+  47) Asignaciones : LValue "<-" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 87
+
+state 49
+
+  26) MInstruccion : "do" MCasos _ "od"
+  50) MCasos : MCasos _ "|" MCaso
+
+  "|"           shift, and go to state 81
+  "od"          shift, and go to state 88
+
+
+state 50
+
+  28) MInstruccion : "id" "(" _ Expresiones ")"
+  29) MInstruccion : "id" "(" _ ")"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+  ")"           shift, and go to state 91
+
+  Expresiones   go to state 89
+  Expresion     go to state 90
+
+state 51
+
+  49) LValue : "id" "[" _ Expresion "]"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 92
+
+state 52
+
+   3) Programa : Procedimientos "main" MInstrucciones _ "end"
+  21) MInstrucciones : MInstrucciones _ ";" MInstruccion
+
+  "end"         shift, and go to state 93
+  ";"           shift, and go to state 41
+
+
+state 53
+
+  13) Procedimiento : "proc" "id" "(" _ Parametros ")" "as" Definiciones PInstruccion
+  14) Procedimiento : "proc" "id" "(" _ Parametros ")" "as" PInstruccion
+  15) Procedimiento : "proc" "id" "(" _ ")" "as" Definiciones PInstruccion
+  16) Procedimiento : "proc" "id" "(" _ ")" "as" PInstruccion
+
+  "out"         shift, and go to state 94
+  ")"           shift, and go to state 98
+  "in"          shift, and go to state 95
+
+  Parametros    go to state 96
+  Parametro     go to state 97
+
+state 54
+
+   9) IDs : IDs "," _ "id"
+
+  "id"          shift, and go to state 99
+
+
+state 55
+
+   7) Definicion : "var" IDs ":" _ "value"
+   8) Definicion : "var" IDs ":" _ "array" "of" "num"
+
+  "array"       shift, and go to state 100
+  "value"       shift, and go to state 101
+
+
+state 56
+
+
+  $default      accept
+
+
+state 57
+
+   2) Programa : Definiciones "main" MInstrucciones _ "end"
+  21) MInstrucciones : MInstrucciones _ ";" MInstruccion
+
+  "end"         shift, and go to state 102
+  ";"           shift, and go to state 41
+
+
+state 58
+
+   1) Programa : Definiciones Procedimientos "main" _ MInstrucciones "end"
+
+  "begin"       shift, and go to state 12
+  "do"          shift, and go to state 15
+  "id"          shift, and go to state 18
+  "if"          shift, and go to state 9
+  "show"        shift, and go to state 11
+  "skip"        shift, and go to state 13
+
+  MInstrucciones  go to state 103
+  LValue        go to state 14
+  MInstruccion  go to state 16
+  Asignaciones  go to state 17
+
+state 59
+
+  56) Expresion : Expresion "+" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 104
+
+state 60
+
+  58) Expresion : Expresion "%" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 105
+
+state 61
+
+  57) Expresion : Expresion "-" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 106
+
+state 62
+
+  59) Expresion : Expresion "*" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 107
+
+state 63
+
+  68) Predicado : Expresion "<" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 108
+
+state 64
+
+  60) Expresion : Expresion "/" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 109
+
+state 65
+
+  72) Predicado : Expresion "=" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 110
+
+state 66
+
+  69) Predicado : Expresion "<=" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 111
+
+state 67
+
+  71) Predicado : Expresion ">=" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 112
+
+state 68
+
+  70) Predicado : Expresion ">" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 113
+
+state 69
+
+  73) Predicado : Expresion "!=" _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 114
+
+state 70
+
+  62) Expresion : "+" "num" _
+
+  $default      reduce using rule 62 (Expresion)
+
+
+state 71
+
+  61) Expresion : "-" "num" _
+
+  $default      reduce using rule 61 (Expresion)
+
+
+state 72
+
+  64) Expresion : "$" "id" _
+
+  $default      reduce using rule 64 (Expresion)
+
+
+state 73
+
+  74) Predicado : Predicado _ "&&" Predicado
+  75) Predicado : Predicado _ "||" Predicado
+  76) Predicado : "~" Predicado _
+
+  $default      reduce using rule 76 (Predicado)
+
+
+state 74
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  67) Expresion : "(" Expresion _ ")"
+  68) Predicado : Expresion _ "<" Expresion
+  69) Predicado : Expresion _ "<=" Expresion
+  70) Predicado : Expresion _ ">" Expresion
+  71) Predicado : Expresion _ ">=" Expresion
+  72) Predicado : Expresion _ "=" Expresion
+  73) Predicado : Expresion _ "!=" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "<="          shift, and go to state 66
+  ">="          shift, and go to state 67
+  "!="          shift, and go to state 69
+  "%"           shift, and go to state 60
+  "="           shift, and go to state 65
+  ">"           shift, and go to state 68
+  "<"           shift, and go to state 63
+  ")"           shift, and go to state 115
+
+
+state 75
+
+  74) Predicado : Predicado _ "&&" Predicado
+  75) Predicado : Predicado _ "||" Predicado
+  79) Predicado : "(" Predicado _ ")"
+
+  "&&"          shift, and go to state 77
+  "||"          shift, and go to state 76
+  ")"           shift, and go to state 116
+
+
+state 76
+
+  75) Predicado : Predicado "||" _ Predicado
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  Predicado     go to state 117
+
+state 77
+
+  74) Predicado : Predicado "&&" _ Predicado
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  Predicado     go to state 118
+
+state 78
+
+  52) MCaso : Predicado "->" _ MInstruccion
+
+  "begin"       shift, and go to state 12
+  "do"          shift, and go to state 15
+  "id"          shift, and go to state 18
+  "if"          shift, and go to state 9
+  "show"        shift, and go to state 11
+  "skip"        shift, and go to state 13
+
+  LValue        go to state 14
+  MInstruccion  go to state 119
+  Asignaciones  go to state 17
+
+state 79
+
+  66) Expresion : "id" "[" _ Expresion "]"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 120
+
+state 80
+
+  25) MInstruccion : "if" MCasos "fi" _
+
+  $default      reduce using rule 25 (MInstruccion)
+
+
+state 81
+
+  50) MCasos : MCasos "|" _ MCaso
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  MCaso         go to state 121
+  Predicado     go to state 38
+
+state 82
+
+  21) MInstrucciones : MInstrucciones ";" MInstruccion _
+
+  $default      reduce using rule 21 (MInstrucciones)
+
+
+state 83
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  67) Expresion : "(" Expresion _ ")"
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  ")"           shift, and go to state 115
+
+
+state 84
+
+  27) MInstruccion : "begin" MInstrucciones "end" _
+
+  $default      reduce using rule 27 (MInstruccion)
+
+
+state 85
+
+  46) Asignaciones : LValue "," Asignaciones _ "," Expresion
+
+  ","           shift, and go to state 122
+
+
+state 86
+
+  48) LValue : "id" _
+  49) LValue : "id" _ "[" Expresion "]"
+
+  "["           shift, and go to state 51
+  $default      reduce using rule 48 (LValue)
+
+
+state 87
+
+  47) Asignaciones : LValue "<-" Expresion _
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 47 (Asignaciones)
+
+
+state 88
+
+  26) MInstruccion : "do" MCasos "od" _
+
+  $default      reduce using rule 26 (MInstruccion)
+
+
+state 89
+
+  28) MInstruccion : "id" "(" Expresiones _ ")"
+  44) Expresiones : Expresiones _ "," Expresion
+
+  ","           shift, and go to state 123
+  ")"           shift, and go to state 124
+
+
+state 90
+
+  45) Expresiones : Expresion _
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 45 (Expresiones)
+
+
+state 91
+
+  29) MInstruccion : "id" "(" ")" _
+
+  $default      reduce using rule 29 (MInstruccion)
+
+
+state 92
+
+  49) LValue : "id" "[" Expresion _ "]"
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  "]"           shift, and go to state 125
+
+
+state 93
+
+   3) Programa : Procedimientos "main" MInstrucciones "end" _
+
+  $default      reduce using rule 3 (Programa)
+
+
+state 94
+
+  20) Parametro : "out" _ "id"
+
+  "id"          shift, and go to state 126
+
+
+state 95
+
+  19) Parametro : "in" _ "id"
+
+  "id"          shift, and go to state 127
+
+
+state 96
+
+  13) Procedimiento : "proc" "id" "(" Parametros _ ")" "as" Definiciones PInstruccion
+  14) Procedimiento : "proc" "id" "(" Parametros _ ")" "as" PInstruccion
+  17) Parametros : Parametros _ "," Parametro
+
+  ","           shift, and go to state 128
+  ")"           shift, and go to state 129
+
+
+state 97
+
+  18) Parametros : Parametro _
+
+  $default      reduce using rule 18 (Parametros)
+
+
+state 98
+
+  15) Procedimiento : "proc" "id" "(" ")" _ "as" Definiciones PInstruccion
+  16) Procedimiento : "proc" "id" "(" ")" _ "as" PInstruccion
+
+  "as"          shift, and go to state 130
+
+
+state 99
+
+   9) IDs : IDs "," "id" _
+
+  $default      reduce using rule 9 (IDs)
+
+
+state 100
+
+   8) Definicion : "var" IDs ":" "array" _ "of" "num"
+
+  "of"          shift, and go to state 131
+
+
+state 101
+
+   7) Definicion : "var" IDs ":" "value" _
+
+  $default      reduce using rule 7 (Definicion)
+
+
+state 102
+
+   2) Programa : Definiciones "main" MInstrucciones "end" _
+
+  $default      reduce using rule 2 (Programa)
+
+
+state 103
+
+   1) Programa : Definiciones Procedimientos "main" MInstrucciones _ "end"
+  21) MInstrucciones : MInstrucciones _ ";" MInstruccion
+
+  "end"         shift, and go to state 132
+  ";"           shift, and go to state 41
+
+
+state 104
+
+  56) Expresion : Expresion _ "+" Expresion
+  56) Expresion : Expresion "+" Expresion _
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 56 (Expresion)
+
+
+state 105
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  58) Expresion : Expresion "%" Expresion _
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  $default      reduce using rule 58 (Expresion)
+
+
+state 106
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  57) Expresion : Expresion "-" Expresion _
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 57 (Expresion)
+
+
+state 107
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  59) Expresion : Expresion "*" Expresion _
+  60) Expresion : Expresion _ "/" Expresion
+
+  $default      reduce using rule 59 (Expresion)
+
+
+state 108
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  68) Predicado : Expresion "<" Expresion _
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 68 (Predicado)
+
+
+state 109
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  60) Expresion : Expresion "/" Expresion _
+
+  $default      reduce using rule 60 (Expresion)
+
+
+state 110
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  72) Predicado : Expresion "=" Expresion _
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 72 (Predicado)
+
+
+state 111
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  69) Predicado : Expresion "<=" Expresion _
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 69 (Predicado)
+
+
+state 112
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  71) Predicado : Expresion ">=" Expresion _
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 71 (Predicado)
+
+
+state 113
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  70) Predicado : Expresion ">" Expresion _
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 70 (Predicado)
+
+
+state 114
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  73) Predicado : Expresion "!=" Expresion _
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 73 (Predicado)
+
+
+state 115
+
+  67) Expresion : "(" Expresion ")" _
+
+  $default      reduce using rule 67 (Expresion)
+
+
+state 116
+
+  79) Predicado : "(" Predicado ")" _
+
+  $default      reduce using rule 79 (Predicado)
+
+
+state 117
+
+  74) Predicado : Predicado _ "&&" Predicado
+  75) Predicado : Predicado _ "||" Predicado
+  75) Predicado : Predicado "||" Predicado _
+
+  "&&"          shift, and go to state 77
+  "||"          error
+  $default      reduce using rule 75 (Predicado)
+
+
+state 118
+
+  74) Predicado : Predicado _ "&&" Predicado
+  74) Predicado : Predicado "&&" Predicado _
+  75) Predicado : Predicado _ "||" Predicado
+
+  "&&"          error
+  $default      reduce using rule 74 (Predicado)
+
+
+state 119
+
+  52) MCaso : Predicado "->" MInstruccion _
+
+  $default      reduce using rule 52 (MCaso)
+
+
+state 120
+
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+  66) Expresion : "id" "[" Expresion _ "]"
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  "]"           shift, and go to state 133
+
+
+state 121
+
+  50) MCasos : MCasos "|" MCaso _
+
+  $default      reduce using rule 50 (MCasos)
+
+
+state 122
+
+  46) Asignaciones : LValue "," Asignaciones "," _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 134
+
+state 123
+
+  44) Expresiones : Expresiones "," _ Expresion
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+
+  Expresion     go to state 135
+
+state 124
+
+  28) MInstruccion : "id" "(" Expresiones ")" _
+
+  $default      reduce using rule 28 (MInstruccion)
+
+
+state 125
+
+  49) LValue : "id" "[" Expresion "]" _
+
+  $default      reduce using rule 49 (LValue)
+
+
+state 126
+
+  20) Parametro : "out" "id" _
+
+  $default      reduce using rule 20 (Parametro)
+
+
+state 127
+
+  19) Parametro : "in" "id" _
+
+  $default      reduce using rule 19 (Parametro)
+
+
+state 128
+
+  17) Parametros : Parametros "," _ Parametro
+
+  "out"         shift, and go to state 94
+  "in"          shift, and go to state 95
+
+  Parametro     go to state 136
+
+state 129
+
+  13) Procedimiento : "proc" "id" "(" Parametros ")" _ "as" Definiciones PInstruccion
+  14) Procedimiento : "proc" "id" "(" Parametros ")" _ "as" PInstruccion
+
+  "as"          shift, and go to state 137
+
+
+state 130
+
+  15) Procedimiento : "proc" "id" "(" ")" "as" _ Definiciones PInstruccion
+  16) Procedimiento : "proc" "id" "(" ")" "as" _ PInstruccion
+
+  "begin"       shift, and go to state 140
+  "return"      shift, and go to state 141
+  "do"          shift, and go to state 144
+  "id"          shift, and go to state 146
+  "if"          shift, and go to state 138
+  "var"         shift, and go to state 4
+  "show"        shift, and go to state 139
+  "skip"        shift, and go to state 142
+
+  Definicion    go to state 5
+  LValue        go to state 14
+  PInstruccion  go to state 143
+  Asignaciones  go to state 145
+  Definiciones  go to state 147
+
+state 131
+
+   8) Definicion : "var" IDs ":" "array" "of" _ "num"
+
+  "num"         shift, and go to state 148
+
+
+state 132
+
+   1) Programa : Definiciones Procedimientos "main" MInstrucciones "end" _
+
+  $default      reduce using rule 1 (Programa)
+
+
+state 133
+
+  66) Expresion : "id" "[" Expresion "]" _
+
+  $default      reduce using rule 66 (Expresion)
+
+
+state 134
+
+  46) Asignaciones : LValue "," Asignaciones "," Expresion _
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 46 (Asignaciones)
+
+
+state 135
+
+  44) Expresiones : Expresiones "," Expresion _
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 44 (Expresiones)
+
+
+state 136
+
+  17) Parametros : Parametros "," Parametro _
+
+  $default      reduce using rule 17 (Parametros)
+
+
+state 137
+
+  13) Procedimiento : "proc" "id" "(" Parametros ")" "as" _ Definiciones PInstruccion
+  14) Procedimiento : "proc" "id" "(" Parametros ")" "as" _ PInstruccion
+
+  "begin"       shift, and go to state 140
+  "return"      shift, and go to state 141
+  "do"          shift, and go to state 144
+  "id"          shift, and go to state 146
+  "if"          shift, and go to state 138
+  "var"         shift, and go to state 4
+  "show"        shift, and go to state 139
+  "skip"        shift, and go to state 142
+
+  Definicion    go to state 5
+  LValue        go to state 14
+  PInstruccion  go to state 149
+  Asignaciones  go to state 145
+  Definiciones  go to state 150
+
+state 138
+
+  36) PInstruccion : "if" _ PCasos "fi"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  PCasos        go to state 151
+  Predicado     go to state 152
+  PCaso         go to state 153
+
+state 139
+
+  41) PInstruccion : "show" _ Expresion
+  42) PInstruccion : "show" _ "string"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "string"      shift, and go to state 155
+  "("           shift, and go to state 45
+
+  Expresion     go to state 154
+
+state 140
+
+  38) PInstruccion : "begin" _ PInstrucciones "end"
+
+  "begin"       shift, and go to state 140
+  "return"      shift, and go to state 141
+  "do"          shift, and go to state 144
+  "id"          shift, and go to state 146
+  "if"          shift, and go to state 138
+  "show"        shift, and go to state 139
+  "skip"        shift, and go to state 142
+
+  PInstrucciones  go to state 156
+  LValue        go to state 14
+  PInstruccion  go to state 157
+  Asignaciones  go to state 145
+
+state 141
+
+  43) PInstruccion : "return" _
+
+  $default      reduce using rule 43 (PInstruccion)
+
+
+state 142
+
+  34) PInstruccion : "skip" _
+
+  $default      reduce using rule 34 (PInstruccion)
+
+
+state 143
+
+  16) Procedimiento : "proc" "id" "(" ")" "as" PInstruccion _
+
+  $default      reduce using rule 16 (Procedimiento)
+
+
+state 144
+
+  37) PInstruccion : "do" _ PCasos "od"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  PCasos        go to state 158
+  Predicado     go to state 152
+  PCaso         go to state 153
+
+state 145
+
+  35) PInstruccion : Asignaciones _
+
+  $default      reduce using rule 35 (PInstruccion)
+
+
+state 146
+
+  39) PInstruccion : "id" _ "(" Expresiones ")"
+  40) PInstruccion : "id" _ "(" ")"
+  48) LValue : "id" _
+  49) LValue : "id" _ "[" Expresion "]"
+
+  "("           shift, and go to state 159
+  "["           shift, and go to state 51
+  $default      reduce using rule 48 (LValue)
+
+
+state 147
+
+   5) Definiciones : Definiciones _ Definicion
+  15) Procedimiento : "proc" "id" "(" ")" "as" Definiciones _ PInstruccion
+
+  "begin"       shift, and go to state 140
+  "return"      shift, and go to state 141
+  "do"          shift, and go to state 144
+  "id"          shift, and go to state 146
+  "if"          shift, and go to state 138
+  "var"         shift, and go to state 4
+  "show"        shift, and go to state 139
+  "skip"        shift, and go to state 142
+
+  Definicion    go to state 27
+  LValue        go to state 14
+  PInstruccion  go to state 160
+  Asignaciones  go to state 145
+
+state 148
+
+   8) Definicion : "var" IDs ":" "array" "of" "num" _
+
+  $default      reduce using rule 8 (Definicion)
+
+
+state 149
+
+  14) Procedimiento : "proc" "id" "(" Parametros ")" "as" PInstruccion _
+
+  $default      reduce using rule 14 (Procedimiento)
+
+
+state 150
+
+   5) Definiciones : Definiciones _ Definicion
+  13) Procedimiento : "proc" "id" "(" Parametros ")" "as" Definiciones _ PInstruccion
+
+  "begin"       shift, and go to state 140
+  "return"      shift, and go to state 141
+  "do"          shift, and go to state 144
+  "id"          shift, and go to state 146
+  "if"          shift, and go to state 138
+  "var"         shift, and go to state 4
+  "show"        shift, and go to state 139
+  "skip"        shift, and go to state 142
+
+  Definicion    go to state 27
+  LValue        go to state 14
+  PInstruccion  go to state 161
+  Asignaciones  go to state 145
+
+state 151
+
+  36) PInstruccion : "if" PCasos _ "fi"
+  53) PCasos : PCasos _ "|" PCaso
+
+  "fi"          shift, and go to state 162
+  "|"           shift, and go to state 163
+
+
+state 152
+
+  55) PCaso : Predicado _ "->" PInstruccion
+  74) Predicado : Predicado _ "&&" Predicado
+  75) Predicado : Predicado _ "||" Predicado
+
+  "&&"          shift, and go to state 77
+  "||"          shift, and go to state 76
+  "->"          shift, and go to state 164
+
+
+state 153
+
+  54) PCasos : PCaso _
+
+  $default      reduce using rule 54 (PCasos)
+
+
+state 154
+
+  41) PInstruccion : "show" Expresion _
+  56) Expresion : Expresion _ "+" Expresion
+  57) Expresion : Expresion _ "-" Expresion
+  58) Expresion : Expresion _ "%" Expresion
+  59) Expresion : Expresion _ "*" Expresion
+  60) Expresion : Expresion _ "/" Expresion
+
+  "+"           shift, and go to state 59
+  "-"           shift, and go to state 61
+  "*"           shift, and go to state 62
+  "/"           shift, and go to state 64
+  "%"           shift, and go to state 60
+  $default      reduce using rule 41 (PInstruccion)
+
+
+state 155
+
+  42) PInstruccion : "show" "string" _
+
+  $default      reduce using rule 42 (PInstruccion)
+
+
+state 156
+
+  32) PInstrucciones : PInstrucciones _ ";" PInstruccion
+  38) PInstruccion : "begin" PInstrucciones _ "end"
+
+  "end"         shift, and go to state 166
+  ";"           shift, and go to state 165
+
+
+state 157
+
+  33) PInstrucciones : PInstruccion _
+
+  $default      reduce using rule 33 (PInstrucciones)
+
+
+state 158
+
+  37) PInstruccion : "do" PCasos _ "od"
+  53) PCasos : PCasos _ "|" PCaso
+
+  "|"           shift, and go to state 163
+  "od"          shift, and go to state 167
+
+
+state 159
+
+  39) PInstruccion : "id" "(" _ Expresiones ")"
+  40) PInstruccion : "id" "(" _ ")"
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "id"          shift, and go to state 39
+  "("           shift, and go to state 45
+  ")"           shift, and go to state 169
+
+  Expresiones   go to state 168
+  Expresion     go to state 90
+
+state 160
+
+  15) Procedimiento : "proc" "id" "(" ")" "as" Definiciones PInstruccion _
+
+  $default      reduce using rule 15 (Procedimiento)
+
+
+state 161
+
+  13) Procedimiento : "proc" "id" "(" Parametros ")" "as" Definiciones PInstruccion _
+
+  $default      reduce using rule 13 (Procedimiento)
+
+
+state 162
+
+  36) PInstruccion : "if" PCasos "fi" _
+
+  $default      reduce using rule 36 (PInstruccion)
+
+
+state 163
+
+  53) PCasos : PCasos "|" _ PCaso
+
+  "+"           shift, and go to state 30
+  "-"           shift, and go to state 32
+  "num"         shift, and go to state 29
+  "$"           shift, and go to state 34
+  "~"           shift, and go to state 35
+  "id"          shift, and go to state 39
+  "false"       shift, and go to state 31
+  "("           shift, and go to state 37
+  "true"        shift, and go to state 33
+
+  Expresion     go to state 28
+  Predicado     go to state 152
+  PCaso         go to state 170
+
+state 164
+
+  55) PCaso : Predicado "->" _ PInstruccion
+
+  "begin"       shift, and go to state 140
+  "return"      shift, and go to state 141
+  "do"          shift, and go to state 144
+  "id"          shift, and go to state 146
+  "if"          shift, and go to state 138
+  "show"        shift, and go to state 139
+  "skip"        shift, and go to state 142
+
+  LValue        go to state 14
+  PInstruccion  go to state 171
+  Asignaciones  go to state 145
+
+state 165
+
+  32) PInstrucciones : PInstrucciones ";" _ PInstruccion
+
+  "begin"       shift, and go to state 140
+  "return"      shift, and go to state 141
+  "do"          shift, and go to state 144
+  "id"          shift, and go to state 146
+  "if"          shift, and go to state 138
+  "show"        shift, and go to state 139
+  "skip"        shift, and go to state 142
+
+  LValue        go to state 14
+  PInstruccion  go to state 172
+  Asignaciones  go to state 145
+
+state 166
+
+  38) PInstruccion : "begin" PInstrucciones "end" _
+
+  $default      reduce using rule 38 (PInstruccion)
+
+
+state 167
+
+  37) PInstruccion : "do" PCasos "od" _
+
+  $default      reduce using rule 37 (PInstruccion)
+
+
+state 168
+
+  39) PInstruccion : "id" "(" Expresiones _ ")"
+  44) Expresiones : Expresiones _ "," Expresion
+
+  ","           shift, and go to state 123
+  ")"           shift, and go to state 173
+
+
+state 169
+
+  40) PInstruccion : "id" "(" ")" _
+
+  $default      reduce using rule 40 (PInstruccion)
+
+
+state 170
+
+  53) PCasos : PCasos "|" PCaso _
+
+  $default      reduce using rule 53 (PCasos)
+
+
+state 171
+
+  55) PCaso : Predicado "->" PInstruccion _
+
+  $default      reduce using rule 55 (PCaso)
+
+
+state 172
+
+  32) PInstrucciones : PInstrucciones ";" PInstruccion _
+
+  $default      reduce using rule 32 (PInstrucciones)
+
+
+state 173
+
+  39) PInstruccion : "id" "(" Expresiones ")" _
+
+  $default      reduce using rule 39 (PInstruccion)
+

@@ -1,0 +1,16 @@
+AST.rb:
+Todo debe heredar de AST.  Cambiar nombres.
+
+Interpreter.rb
+Las expresiones booleanas deben evaluarse de izquierda a derecha aplicando la técnica del corto-circuito.
+Escribir excepciones para errores de contexto.
+Escribir excepciones para errores en tiempo de ejecución.
+Escribir método check para cada clase del árbol para crear la tabla o tirar excepciones para errores de contexto; deben mostrarse TODOS.
+Todos los predicados de casos deben ser evaluados antes de correr alguno (no afecta a la ejecución correcta, pero sí a los errores dinámicos).
+
+yisiel.rb:
+Manejar el stack overflow, la falta de memoria, etc.
+
+wtf:
+'&&', '||' y '~' tienen más precedencia que '>=', '<=', '>', '<', '=' y '!='!?
+
